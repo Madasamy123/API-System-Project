@@ -34,7 +34,7 @@ public class MetricsController {
         return metricsService.getMetricsByUserEmail(email);
     }
 
-    
+
 
     // User delete  metrics
 

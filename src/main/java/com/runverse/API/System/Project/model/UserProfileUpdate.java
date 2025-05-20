@@ -1,5 +1,7 @@
 package com.runverse.API.System.Project.model;
 
+
+
 public class UserProfileUpdate {
     private String name;
     private String password;
@@ -15,6 +17,8 @@ public class UserProfileUpdate {
     public void setName(String name) {
         this.name = name;
     }
+
+
 
     public String getPassword() {
         return password;
