@@ -50,7 +50,9 @@ public class AuthController {
         Map<String, String> response = new HashMap<>();
 
         if (userOptional.isPresent() && userService.checkPassword(password, userOptional.get().getPassword())) {
+            User user = userOptional.get();
             String token = jwtUtil.generateToken(email);
+            response.put("id", String.valueOf(user.getId()));
             response.put("token", token);
             response.put("role", userOptional.get().getRole());
             return ResponseEntity.ok(response);

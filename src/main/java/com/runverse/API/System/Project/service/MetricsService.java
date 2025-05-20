@@ -54,12 +54,12 @@ public class MetricsService {
 
     //
 
-    public void deleteMetricsByUserEmail(String email){
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(()->new RuntimeException("User not found"));
+    public void deleteMetricsByUserId(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
         Metrics metrics = metricsRepository.findByUser(user)
-                .orElseThrow(()-> new RuntimeException("Metrics not found"));
+                .orElseThrow(() -> new RuntimeException("Metrics not found for user id: " + id));
 
         metricsRepository.delete(metrics);
     }
@@ -69,10 +69,11 @@ public class MetricsService {
 
 
 
-
     public List<Metrics> getAllMetrics() {
         return metricsRepository.findAll();
     }
+
+
 
     public Metrics getMetricsByUserId(Long userId) {
         User user = userRepository.findById(userId)

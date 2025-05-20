@@ -38,19 +38,14 @@ public class MetricsController {
 
     // User delete  metrics
 
-    @DeleteMapping("/user")
-
-    public ResponseEntity<String> deleteMetrics(Authentication authentication){
-        String email=authentication.getName();
-
-        try{
-            metricsService.deleteMetricsByUserEmail(email);
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<String> deleteMetrics(@PathVariable Long id) {
+        try {
+            metricsService.deleteMetricsByUserId(id);
             return ResponseEntity.ok("Metrics deleted successfully");
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-
     }
 
 
